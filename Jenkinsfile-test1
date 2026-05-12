@@ -53,4 +53,18 @@ pipeline {
             }
         }
     }
+
+    post {
+    success {
+        mail to: 'rachayyaswamyaj@gmail.com',
+             subject: "Build Success",
+             body: "Pipeline completed successfully."
+        }
+
+    failure {
+        mail to: 'rachayyaswamyaj@gmail.com',
+             subject: "Build Failed",
+             body: "Pipeline failed. Check Jenkins."
+        }
+    }
 }
