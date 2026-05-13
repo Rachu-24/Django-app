@@ -56,16 +56,50 @@ pipeline {
     }
 
     post {
-    success {
-       mail to: 'rachayyaswamyaj@gmail.com',
-            subject: "Build Success",
-            body: "Pipeline completed successfully."
-       }
+//     success {
+//        mail to: 'rachayyaswamyaj@gmail.com',
+//             subject: "Build Success",
+//             body: "Pipeline completed successfully."
+//        }
 
-   failure {
-       mail to: 'rachayyaswamyaj@gmail.com',
-            subject: "Build Failed",
-            body: "Pipeline failed. Check Jenkins."
-       }
-   }
+//    failure {
+//        mail to: 'rachayyaswamyaj@gmail.com',
+//             subject: "Build Failed",
+//             body: "Pipeline failed. Check Jenkins."
+//        }
+
+       success {
+            emailext(
+                to: 'team@example.com',
+                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+                Build Status: SUCCESS
+
+                Job Name: ${env.JOB_NAME}
+                Build Number: ${env.BUILD_NUMBER}
+                Build URL: ${env.BUILD_URL}
+
+                Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
+                """,
+                mimeType: 'text/plain'
+            )
+        }
+
+        failure {
+            emailext(
+                to: 'team@example.com',
+                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+                Build Status: FAILED
+
+                Job Name: ${env.JOB_NAME}
+                Build Number: ${env.BUILD_NUMBER}
+                Build URL: ${env.BUILD_URL}
+
+                Please check the Jenkins console logs.
+                """,
+                mimeType: 'text/plain'
+            )
+        }
+    }
 }
