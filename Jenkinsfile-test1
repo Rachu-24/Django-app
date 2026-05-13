@@ -68,7 +68,7 @@ pipeline {
 
                 Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
                 """,
-       }
+            }
 
    failure {
        mail to: 'rachayyaswamyaj@gmail.com',
