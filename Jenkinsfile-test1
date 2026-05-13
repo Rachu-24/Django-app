@@ -58,7 +58,7 @@ pipeline {
     post {
     success {
        mail to: 'rachayyaswamyaj@gmail.com',
-            subject: subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
             body:  """
                 Build Status: SUCCESS
 
@@ -72,7 +72,7 @@ pipeline {
 
    failure {
        mail to: 'rachayyaswamyaj@gmail.com',
-            subject: subject: "Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            subject: "Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
             body: """
                 Build Status: FAILED
 
