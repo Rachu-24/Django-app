@@ -83,39 +83,5 @@ pipeline {
                 Please check the Jenkins console logs.
                 """,
             }
-
-    //    success {
-    //         emailext(
-    //             to: 'rachayyaswamyaj@gmail.com',
-    //             subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //             body: """
-    //             Build Status: SUCCESS
-
-    //             Job Name: ${env.JOB_NAME}
-    //             Build Number: ${env.BUILD_NUMBER}
-    //             Build URL: ${env.BUILD_URL}
-
-    //             Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
-    //             """,
-    //             mimeType: 'text/plain'
-    //         )
-    //     }
-
-    //     failure {
-    //         emailext(
-    //             to: 'rachayyaswamyaj@gmail.com',
-    //             subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    //             body: """
-    //             Build Status: FAILED
-
-    //             Job Name: ${env.JOB_NAME}
-    //             Build Number: ${env.BUILD_NUMBER}
-    //             Build URL: ${env.BUILD_URL}
-
-    //             Please check the Jenkins console logs.
-    //             """,
-    //             mimeType: 'text/plain'
-    //         )
-    //     }
     }
 }
