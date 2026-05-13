@@ -57,9 +57,10 @@ pipeline {
 
     post {
     success {
-       mail to: 'rachayyaswamyaj@gmail.com',
-            subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-            body:  """
+       emailext(
+                to: 'rachayyaswamyaj@gmail.com',
+                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
                 Build Status: SUCCESS
 
                 Job Name: ${env.JOB_NAME}
@@ -68,12 +69,15 @@ pipeline {
 
                 Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
                 """,
+                mimeType: 'text/plain'
+            )
             }
 
    failure {
-       mail to: 'rachayyaswamyaj@gmail.com',
-            subject: "Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-            body: """
+       emailext(
+                to: 'rachayyaswamyaj@gmail.com',
+                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
                 Build Status: FAILED
 
                 Job Name: ${env.JOB_NAME}
@@ -82,6 +86,8 @@ pipeline {
 
                 Please check the Jenkins console logs.
                 """,
+                mimeType: 'text/plain'
+            )
             }
     }
 }
