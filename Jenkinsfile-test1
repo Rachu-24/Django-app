@@ -56,23 +56,10 @@ pipeline {
     }
 
     post {
-//     success {
-//        mail to: 'rachayyaswamyaj@gmail.com',
-//             subject: "Build Success",
-//             body: "Pipeline completed successfully."
-//        }
-
-//    failure {
-//        mail to: 'rachayyaswamyaj@gmail.com',
-//             subject: "Build Failed",
-//             body: "Pipeline failed. Check Jenkins."
-//        }
-
-       success {
-            emailext(
-                to: 'rachayyaswamyaj@gmail.com',
-                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """
+    success {
+       mail to: 'rachayyaswamyaj@gmail.com',
+            subject: subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            body:  """
                 Build Status: SUCCESS
 
                 Job Name: ${env.JOB_NAME}
@@ -81,15 +68,12 @@ pipeline {
 
                 Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
                 """,
-                mimeType: 'text/plain'
-            )
-        }
+       }
 
-        failure {
-            emailext(
-                to: 'rachayyaswamyaj@gmail.com',
-                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """
+   failure {
+       mail to: 'rachayyaswamyaj@gmail.com',
+            subject: subject: "Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            body: """
                 Build Status: FAILED
 
                 Job Name: ${env.JOB_NAME}
@@ -98,8 +82,40 @@ pipeline {
 
                 Please check the Jenkins console logs.
                 """,
-                mimeType: 'text/plain'
-            )
-        }
+            }
+
+    //    success {
+    //         emailext(
+    //             to: 'rachayyaswamyaj@gmail.com',
+    //             subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+    //             body: """
+    //             Build Status: SUCCESS
+
+    //             Job Name: ${env.JOB_NAME}
+    //             Build Number: ${env.BUILD_NUMBER}
+    //             Build URL: ${env.BUILD_URL}
+
+    //             Triggered By: ${currentBuild.getBuildCauses()[0].shortDescription}
+    //             """,
+    //             mimeType: 'text/plain'
+    //         )
+    //     }
+
+    //     failure {
+    //         emailext(
+    //             to: 'rachayyaswamyaj@gmail.com',
+    //             subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+    //             body: """
+    //             Build Status: FAILED
+
+    //             Job Name: ${env.JOB_NAME}
+    //             Build Number: ${env.BUILD_NUMBER}
+    //             Build URL: ${env.BUILD_URL}
+
+    //             Please check the Jenkins console logs.
+    //             """,
+    //             mimeType: 'text/plain'
+    //         )
+    //     }
     }
 }
