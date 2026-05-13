@@ -58,7 +58,7 @@ pipeline {
     post {
     success {
        emailext(
-                to: 'rachayyaswamyaj@gmail.com',
+                to: 'rachayyappaswamy24@gmail.com',
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
                 Build Status: SUCCESS
@@ -75,7 +75,7 @@ pipeline {
 
    failure {
        emailext(
-                to: 'rachayyaswamyaj@gmail.com',
+                to: 'rachayyappaswamy24@gmail.com',
                 subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
                 Build Status: FAILED
