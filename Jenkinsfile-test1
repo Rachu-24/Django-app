@@ -57,21 +57,15 @@ pipeline {
 
     post {
     success {
-       emailext(
-                to: 'rachayyaswamyaj@gmail.com',
-                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: "Build Success"
-              //  mimeType: 'text/plain'
-            )
-            }
+        mail to: 'rachayyaswamyaj@gmail.com',
+             subject: 'Jenkins Build Success',
+             body: 'Build completed successfully.'
+        }
 
-   failure {
-       emailext(
-                to: 'rachayyaswamyaj@gmail.com',
-                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: "Build Failure"
-             //   mimeType: 'text/plain'
-            )
-            }
+    failure {
+        mail to: 'rachayyaswamyaj@gmail.com',
+             subject: 'Jenkins Build Failed',
+             body: 'Build failed. Please check Jenkins console.'
+        }
     }
 }
