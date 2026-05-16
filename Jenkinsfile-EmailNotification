@@ -1,6 +1,7 @@
 pipeline {
-    agent label 'microdegree'
-
+    agent {
+        node(label: 'microdegree')
+    }
     environment {
         IMAGE_NAME = "swamy024/microdegree"
         IMAGE_TAG = "latest"
